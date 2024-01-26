@@ -1,7 +1,7 @@
 NAME = philo
 SRCS = check_arg.c  init_arg.c  main.c  philo.c  utils_0.c
 OBJS = $(SRCS:.c=.o)
-CFLAGS = -Wall -Werror -Wextra
+CFLAGS = -g -g3 #-Wall -Werror -Wextra
 
 
 all:$(NAME)

@@ -43,6 +43,7 @@ void    clean_all(t_arg *ptr)
         pthread_mutex_destroy(&ptr->fork[i].mtx);
         pthread_mutex_destroy(&ptr->philo[i].le_th);
     }
+    pthread_mutex_destroy(&ptr->mtx);
 }
 
 // int     ready_philo(t_arg *ptr)

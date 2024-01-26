@@ -8,6 +8,7 @@
 # include <sys/time.h>
 # include <unistd.h>
 
+typedef struct s_arg t_arg;
 
 typedef struct s_fork
 {
@@ -25,6 +26,7 @@ typedef struct s_philo
     pthread_mutex_t   le_th;
     long        last_eat;
     char        status;
+    t_arg       *arg;
 }   t_philo;
 
 typedef struct s_arg
@@ -37,9 +39,9 @@ typedef struct s_arg
     long    start_time;
     long    finished_philos;
     char    status;
-    
     t_philo *philo;
     t_fork  *fork;
+    pthread_mutex_t   mtx;
 
 }   t_arg;
 
