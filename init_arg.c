@@ -16,6 +16,7 @@ int     init_arg(t_arg *ptr)
     }
     ptr->start_time = get_time();
     ptr->finished_philos = 0;
+    return (0);
 }
 
 static void    init_philos(t_arg *ptr)

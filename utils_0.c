@@ -45,18 +45,40 @@ void    clean_all(t_arg *ptr)
     }
 }
 
-int     ready_philo(t_arg *ptr)
-{
-    int i;
+// int     ready_philo(t_arg *ptr)
+// {
+//     int i;
 
-    i = 0;
-    while (i < ptr->philos_number)
-    {
-        if (ptr->philo[i].status == 'r')
-            return (i);
-        i++;
-    }
-}
+//     i = 0;
+//     while (i < ptr->philos_number)
+//     {
+//         if (ptr->philo[i].status == 'r')
+//             return (i);
+//         i++;
+//     }
+//     return (0);
+// }
+
+// int     ready_philo(t_arg *ptr)
+// {
+//     int i;
+
+//     i = 0;
+//     while (i < ptr->philos_number)
+//     {
+//         if (i % 2 == 0 && ptr->philo[i].status == 'r')
+//             return (i);
+//         i++;
+//     }
+//     i = 0;
+//     while (i < ptr->philos_number)
+//     {
+//         if (i % 2 && ptr->philo[i].status == 'r')
+//             return (i);
+//         i++;
+//     }
+//     return (0);
+// }
 
 
 void    ft_sleep(long n)
@@ -65,7 +87,7 @@ void    ft_sleep(long n)
 
     start = get_time();
     while (get_time() < start + n)
-        usleep(10);
+        usleep(100);
 }
 
 
