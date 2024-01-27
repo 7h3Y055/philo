@@ -39,6 +39,10 @@ void    *routine(void *addr)
 
     philo = addr;
     philo->status = 's';
+    if ((philo->id) % 2 == 0)
+        usleep(50);
+    if ((philo->id) == 4)
+        usleep(200);
     pthread_mutex_lock(&philo->arg->mtx);
     while (philo->status != 'f' || !philo->arg->finished_philos)
     {
