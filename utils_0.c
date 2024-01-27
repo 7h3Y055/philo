@@ -33,56 +33,7 @@ long    get_time(void)
     return ((tv.tv_sec * 1000) + (tv.tv_usec * 0.001));
 }
 
-void    clean_all(t_arg *ptr)
-{
-    int i;
-
-    i = -1;
-    while (++i < ptr->philos_number)
-    {
-        pthread_mutex_destroy(&ptr->fork[i].mtx);
-        pthread_mutex_destroy(&ptr->philo[i].le_th);
-    }
-    pthread_mutex_destroy(&ptr->mtx);
-}
-
-// int     ready_philo(t_arg *ptr)
-// {
-//     int i;
-
-//     i = 0;
-//     while (i < ptr->philos_number)
-//     {
-//         if (ptr->philo[i].status == 'r')
-//             return (i);
-//         i++;
-//     }
-//     return (0);
-// }
-
-// int     ready_philo(t_arg *ptr)
-// {
-//     int i;
-
-//     i = 0;
-//     while (i < ptr->philos_number)
-//     {
-//         if (i % 2 == 0 && ptr->philo[i].status == 'r')
-//             return (i);
-//         i++;
-//     }
-//     i = 0;
-//     while (i < ptr->philos_number)
-//     {
-//         if (i % 2 && ptr->philo[i].status == 'r')
-//             return (i);
-//         i++;
-//     }
-//     return (0);
-// }
-
-
-void    ft_sleep(long n)
+void    ft_usleep(long n)
 {
     long    start;
 
@@ -92,4 +43,18 @@ void    ft_sleep(long n)
 }
 
 
-
+void    print_status(t_philo *philo, char status)
+{
+    pthread_mutex_lock(&philo->arg->mtx);
+    if (status == 't')
+        printf("%ld\t%d is thinking\n", get_time() - philo->arg->start_time, philo->id);
+    else if (status == 'f')
+        printf("%ld\t%d has taken a fork\n", get_time() - philo->arg->start_time, philo->id);
+    else if (status == 'e')
+        printf("%ld\t%d is eating\n", get_time() - philo->arg->start_time, philo->id);
+    else if (status == 's')
+        printf("%ld\t%d is sleeping\n", get_time() - philo->arg->start_time, philo->id);
+    else if (status == 'd')
+        printf("%ld\t%d died\n", get_time() - philo->arg->start_time, philo->id);
+    pthread_mutex_unlock(&philo->arg->mtx);
+}

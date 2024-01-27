@@ -10,23 +10,17 @@
 
 typedef struct s_arg t_arg;
 
-typedef struct s_fork
-{
-     pthread_mutex_t    mtx;
-}   t_fork;
-
-
 typedef struct s_philo
 {
-    int         id;
-    pthread_t   th;
-    t_fork      *fork_1;
-    t_fork      *fork_2;
-    long        eat_counter;
-    pthread_mutex_t   le_th;
-    long        last_eat;
-    char        status;
-    t_arg       *arg;
+    int             id;
+    pthread_t       th;
+    pthread_mutex_t *fork_1;
+    pthread_mutex_t *fork_2;
+    long            eat_counter;
+    pthread_mutex_t le_th;
+    long            last_eat;
+    char            status;
+    t_arg           *arg;
 }   t_philo;
 
 typedef struct s_arg
@@ -40,7 +34,7 @@ typedef struct s_arg
     long    finished_philos;
     char    status;
     t_philo *philo;
-    t_fork  *fork;
+    pthread_mutex_t  *forks;
     pthread_mutex_t   mtx;
 
 }   t_arg;
@@ -54,7 +48,8 @@ long    ft_atoil(char const *str);
 long    get_time(void);
 void    *routine(void *addr);
 void    *monitor(void *addr);
-int     ready_philo(t_arg *ptr);
-void    ft_sleep(long n);
+void    ft_usleep(long n);
+void    print_status(t_philo *philo, char status);
+void    ft_eat(t_philo *philo);
 
 #endif
